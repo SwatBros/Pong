@@ -1,0 +1,176 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Ball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Level.gd" type="Script" id=3]
+[ext_resource path="res://assets/consola.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/Timer.mp3" type="AudioStream" id=5]
+[ext_resource path="res://assets/Score.mp3" type="AudioStream" id=6]
+[ext_resource path="res://assets/Soundtrack.mp3" type="AudioStream" id=7]
+[ext_resource path="res://assets/consolai.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 960, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 540 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 50
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 8 )
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Bg" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+color = Color( 0.0980392, 0.0980392, 0.141176, 1 )
+
+[node name="Ball" parent="." instance=ExtResource( 2 )]
+position = Vector2( 960, 540 )
+
+[node name="Borders" type="Node2D" parent="."]
+
+[node name="BorderTop" type="StaticBody2D" parent="Borders"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderTop"]
+position = Vector2( 960, 0 )
+shape = SubResource( 1 )
+
+[node name="BorderBot" type="StaticBody2D" parent="Borders"]
+position = Vector2( 0, 1080 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderBot"]
+position = Vector2( 960, 0 )
+shape = SubResource( 1 )
+
+[node name="Areas" type="Node2D" parent="."]
+
+[node name="LeftArea" type="Area2D" parent="Areas"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/LeftArea"]
+position = Vector2( 0, 540 )
+shape = SubResource( 2 )
+
+[node name="RightArea" type="Area2D" parent="Areas"]
+position = Vector2( 1920, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/RightArea"]
+position = Vector2( 0, 540 )
+shape = SubResource( 2 )
+
+[node name="Paddles" type="Node2D" parent="."]
+
+[node name="PlayerL" parent="Paddles" instance=ExtResource( 1 )]
+position = Vector2( 100, 540 )
+
+[node name="PlayerR" parent="Paddles" instance=ExtResource( 1 )]
+position = Vector2( 1820, 540 )
+rotation = 3.14159
+dir = "r"
+
+[node name="Labels" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="LPoints" type="Label" parent="Labels"]
+margin_left = -200.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+custom_fonts/font = SubResource( 3 )
+text = "Test"
+align = 1
+valign = 1
+
+[node name="RPoints" type="Label" parent="Labels"]
+margin_left = 200.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+custom_fonts/font = SubResource( 3 )
+text = "Test"
+align = 1
+valign = 1
+
+[node name="Timer" type="Label" parent="Labels"]
+margin_top = -200.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+custom_colors/font_color = Color( 0.301961, 0.815686, 0.952941, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Test"
+align = 1
+valign = 1
+
+[node name="Keys" type="Label" parent="Labels"]
+margin_right = 1920.0
+margin_bottom = 1070.0
+custom_fonts/font = SubResource( 5 )
+text = "J = \"Left AI\"    K = \"Right AI\"    R = \"Reset\"    F = \"Fullscreen\"    M = \"Mute Soundtrack\"    N = \"Mute FX\"    C = \"Credits\"    ESC = \"Close\""
+align = 1
+valign = 2
+
+[node name="License" type="Label" parent="Labels"]
+visible = false
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1910.0
+margin_bottom = 1070.0
+custom_fonts/font = SubResource( 6 )
+text = "This game uses Godot Engine, available under the following license:
+
+Copyright (c) 2007-2022 Juan Linietsky, Ariel Manzur. Copyright (c) 2014-2022 Godot Engine contributors.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+Portions of this software are copyright © 2022 The FreeType Project (www.freetype.org). All rights reserved.
+
+
+Copyright The Mbed TLS Contributors
+
+Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License."
+autowrap = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="AudioT" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="AudioScore" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="Soundtrack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -15.0
+autoplay = true
+
+[node name="TextFadeOut" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Areas/LeftArea" to="." method="_on_LeftArea_body_entered"]
+[connection signal="body_entered" from="Areas/RightArea" to="." method="_on_RightArea_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="TextFadeOut" to="." method="_on_TextFadeOut_timeout"]

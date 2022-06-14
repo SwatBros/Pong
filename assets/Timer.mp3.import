@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Timer.mp3-1db00690aacc494658eb4a3b63d46b4d.mp3str"
+
+[deps]
+
+source_file="res://assets/Timer.mp3"
+dest_files=[ "res://.import/Timer.mp3-1db00690aacc494658eb4a3b63d46b4d.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
